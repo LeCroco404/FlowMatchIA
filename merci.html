@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message envoyé ! - FlowMatchAI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #EEF5FF 0%, #FFFFFF 50%, #EEF5FF 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .success-page::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(42, 110, 240, 0.1) 0%, transparent 70%);
+            top: -150px;
+            right: -150px;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .success-page::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(42, 110, 240, 0.08) 0%, transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .success-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 3rem;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.6s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #2A6EF0 0%, #1E5BD8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 0.5s ease 0.2s both;
+            box-shadow: 0 10px 25px rgba(42, 110, 240, 0.3);
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        .success-checkmark {
+            animation: drawCheck 0.5s ease 0.5s both;
+        }
+        
+        @keyframes drawCheck {
+            from {
+                stroke-dashoffset: 100;
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        .success-content h1 {
+            color: #111827;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+        
+        .success-content p {
+            color: #6B7280;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease 0.5s both;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .success-details {
+            background: #F9FAFB;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            text-align: left;
+            animation: fadeInUp 0.6s ease 0.6s both;
+        }
+        
+        .success-details h3 {
+            font-size: 1rem;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+        
+        .success-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        
+        .success-detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .success-detail-item svg {
+            flex-shrink: 0;
+        }
+        
+        .success-detail-item span {
+            color: #6B7280;
+            font-size: 0.95rem;
+        }
+        
+        .btn-home {
+            animation: fadeInUp 0.6s ease 0.7s both;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #2A6EF0;
+            opacity: 0;
+            animation: confettiFall 3s ease-out;
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-page">
+        <div class="success-content">
+            <div class="success-icon">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <path class="success-checkmark" d="M15 30L25 40L45 20" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="100" stroke-dashoffset="100"/>
+                </svg>
+            </div>
+            
+            <h1>Message envoyé avec succès !</h1>
+            
+            <p>
+                Merci pour votre demande. Notre équipe va analyser votre besoin et vous contactera 
+                sous <strong>24 heures</strong> pour discuter de votre projet IA.
+            </p>
+            
+            <div class="success-details">
+                <h3>Prochaines étapes :</h3>
+                
+                <div class="success-detail-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="#2A6EF0" stroke-width="2"/>
+                        <path d="M12 6V12L16 14" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Nous étudions votre demande en détail</span>
+                </div>
+                
+                <div class="success-detail-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="#2A6EF0" stroke-width="2"/>
+                        <path d="M3 9L12 14L21 9" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Vous recevez notre réponse par email sous 24h</span>
+                </div>
+                
+                <div class="success-detail-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M8 12L11 15L16 9" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="10" stroke="#2A6EF0" stroke-width="2"/>
+                    </svg>
+                    <span>Nous planifions un échange pour affiner votre projet</span>
+                </div>
+            </div>
+            
+            <a href="/" class="btn btn-primary btn-home">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M16 10H4M4 10L9 5M4 10L9 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Retour à l'accueil
+            </a>
+            
+            <p style="font-size: 0.9rem; color: #9CA3AF; margin-top: 2rem; margin-bottom: 0;">
+                💡 Consultez vos spams si vous ne recevez pas notre réponse
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Animation de confettis (optionnel)
+        function createConfetti() {
+            const colors = ['#2A6EF0', '#1E5BD8', '#EEF5FF'];
+            const confettiCount = 50;
+            
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.querySelector('.success-page').appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+        
+        // Lancer les confettis au chargement
+        window.addEventListener('load', createConfetti);
+    </script>
+</body>
+</html>
