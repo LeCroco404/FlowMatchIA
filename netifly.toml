@@ -1,0 +1,158 @@
+# Configuration Netlify pour FlowMatchAI
+
+# ============================================
+# HEADERS DE SÉCURITÉ
+# ============================================
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Protection contre le clickjacking
+    X-Frame-Options = "DENY"
+    
+    # Empêcher le MIME type sniffing
+    X-Content-Type-Options = "nosniff"
+    
+    # Protection XSS (Cross-Site Scripting)
+    X-XSS-Protection = "1; mode=block"
+    
+    # Content Security Policy (CSP)
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com;
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https:;
+      font-src 'self' data:;
+      connect-src 'self';
+      frame-src https://www.google.com;
+      frame-ancestors 'none';
+      base-uri 'self';
+      form-action 'self';
+    """
+    
+    # Permissions Policy (anciennement Feature Policy)
+    Permissions-Policy = """
+      geolocation=(),
+      microphone=(),
+      camera=(),
+      payment=(),
+      usb=(),
+      magnetometer=(),
+      gyroscope=(),
+      accelerometer=()
+    """
+    
+    # Forcer HTTPS (HSTS)
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    
+    # Referrer Policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Cache Control
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Cache pour les assets CSS (1 an)
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache pour les assets JS (1 an)
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache pour les images (1 an)
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# ============================================
+# REDIRECTIONS
+# ============================================
+
+# Redirection HTTP vers HTTPS
+[[redirects]]
+  from = "http://flowmatchai.netlify.app/*"
+  to = "https://flowmatchai.netlify.app/:splat"
+  status = 301
+  force = true
+
+# Redirection www vers non-www (adapter selon votre domaine)
+# [[redirects]]
+#   from = "https://www.flowmatchai.com/*"
+#   to = "https://flowmatchai.com/:splat"
+#   status = 301
+#   force = true
+
+# Pages d'erreur personnalisées (optionnel)
+# [[redirects]]
+#   from = "/*"
+#   to = "/404.html"
+#   status = 404
+
+# ============================================
+# CONFIGURATION DES FORMULAIRES
+# ============================================
+
+# Les formulaires Netlify sont automatiquement détectés
+# Pas besoin de configuration supplémentaire ici
+
+# Pour activer les notifications par email :
+# 1. Allez dans Site Settings > Forms dans le dashboard Netlify
+# 2. Activez "Form notifications"
+# 3. Ajoutez votre email
+
+# ============================================
+# BUILD SETTINGS (si vous utilisez un build)
+# ============================================
+
+# [build]
+#   publish = "."
+#   command = "echo 'No build command'"
+
+# ============================================
+# VARIABLES D'ENVIRONNEMENT
+# ============================================
+
+# Les variables d'environnement doivent être configurées dans le dashboard Netlify
+# Site Settings > Environment variables
+
+# Variables requises pour Supabase (si vous utilisez la solution 2) :
+# - SUPABASE_URL
+# - SUPABASE_ANON_KEY
+# - RECAPTCHA_SECRET_KEY (si vous utilisez reCAPTCHA)
+
+# ============================================
+# PLUGINS (optionnel)
+# ============================================
+
+# [[plugins]]
+#   package = "@netlify/plugin-sitemap"
+
+# [[plugins]]
+#   package = "netlify-plugin-submit-sitemap"
+#   [plugins.inputs]
+#     baseUrl = "https://flowmatchai.com"
+#     sitemapPath = "/sitemap.xml"
+#     providers = [
+#       "google",
+#       "bing"
+#     ]
