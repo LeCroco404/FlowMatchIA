@@ -9,13 +9,13 @@
   [headers.values]
     # Protection contre le clickjacking
     X-Frame-Options = "DENY"
-    
+
     # Empêcher le MIME type sniffing
     X-Content-Type-Options = "nosniff"
-    
+
     # Protection XSS (Cross-Site Scripting)
     X-XSS-Protection = "1; mode=block"
-    
+
     # Content Security Policy (CSP)
     Content-Security-Policy = """
       default-src 'self';
@@ -29,7 +29,7 @@
       base-uri 'self';
       form-action 'self';
     """
-    
+
     # Permissions Policy (anciennement Feature Policy)
     Permissions-Policy = """
       geolocation=(),
@@ -41,13 +41,13 @@
       gyroscope=(),
       accelerometer=()
     """
-    
+
     # Forcer HTTPS (HSTS)
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-    
+
     # Referrer Policy
     Referrer-Policy = "strict-origin-when-cross-origin"
-    
+
     # Cache Control
     Cache-Control = "public, max-age=0, must-revalidate"
 
