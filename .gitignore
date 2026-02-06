@@ -1,0 +1,20 @@
+# macOS system files
+.DS_Store
+
+# Logs
+*.log
+
+# Archives / backups
+*.zip
+*.bak
+*.tmp
+*.swp
+
+# Environment files
+.env
+
+# Node modules (if you use npm later)
+node_modules/
+
+# OS metadata
+Thumbs.db
