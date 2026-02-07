@@ -570,7 +570,7 @@ a {
     content: '';
     position: absolute;
     left: 30px;
-    top: 80px;
+    top: 110px;
     bottom: -80px;
     width: 2px;
     background: linear-gradient(180deg, var(--primary) 0%, var(--primary-light) 100%);
