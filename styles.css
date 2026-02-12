@@ -831,7 +831,7 @@ a {
     }
     .step:not(:last-child)::after {
         left: 30px;
-        top: 70px;
-        bottom: -70px;
+        top: 130px;
+        bottom: -30px;
     }
 }
