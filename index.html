@@ -623,7 +623,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 FlowMatchAI. Tous droits réservés.</p>
+                <p>&copy; 2025 FlowMatchAI. Tous droits réservés. by e_404_</p>
             </div>
         </div>
     </footer>
@@ -645,10 +645,10 @@
             e.preventDefault();
             const msg = document.getElementById('formMessage');
             const btn = this.querySelector('button');
-            
+
             btn.disabled = true;
             btn.textContent = 'Envoi en cours...';
-            
+
             setTimeout(() => {
                 msg.className = 'form-message success';
                 msg.textContent = '✓ Message envoyé ! Nous vous recontactons sous 24h.';
