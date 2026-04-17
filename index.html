@@ -3,426 +3,875 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FlowMatchAI - Missions IA simples pour PME avec des étudiants encadrés">
-    <title>FlowMatchAI - Missions IA Simples & Conformes RGPD</title>
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link rel="stylesheet" href="styles.css">
+    <title>FlowMatchAI - Connectez-vous aux meilleurs experts IA</title>
+    <style>
+        /* === RESET & VARIABLES === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --primary: #2A6EF0;
+            --primary-dark: #1E5BD8;
+            --primary-light: #EEF5FF;
+            --text-dark: #1a202c;
+            --text-gray: #4a5568;
+            --bg-light: #f7fafc;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        
+        /* === HEADER === */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--primary); }
+        
+        .nav-auth {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+        
+        /* === HERO === */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .highlight { color: var(--primary); }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        /* === STATS === */
+        .stats {
+            background: white;
+            padding: 3rem 0;
+            margin-top: -2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+        
+        /* === SECTIONS === */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+        }
+        
+        /* === SERVICES === */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--primary);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .service-card p {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-list {
+            list-style: none;
+        }
+        
+        .service-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-gray);
+        }
+        
+        .service-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+        
+        /* === TARIFS === */
+        .pricing {
+            background: var(--bg-light);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(42,110,240,0.2);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pricing-badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .pricing-price span {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            font-weight: 400;
+        }
+        
+        .pricing-desc {
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+        
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--text-gray);
+        }
+        
+        /* === PROCESS === */
+        .process-steps {
+            display: grid;
+            gap: 3rem;
+        }
+        
+        .process-step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .step-content p {
+            color: var(--text-gray);
+        }
+        
+        /* === TESTIMONIALS === */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .author-name {
+            font-weight: 600;
+        }
+        
+        .author-position {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+        
+        /* === CONTACT === */
+        .contact {
+            background: var(--bg-light);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .form-message.success {
+            display: block;
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .form-message.error {
+            display: block;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        /* === FOOTER === */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer h4 {
+            margin-bottom: 1rem;
+        }
+        
+        .footer ul {
+            list-style: none;
+        }
+        
+        .footer ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #4a5568;
+            color: #cbd5e0;
+        }
+        
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 6rem 0 3rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: scale(1); }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header" id="header">
+    <!-- HEADER -->
+    <header class="header">
         <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <!--<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="8" fill="#2A6EF0"/>
-                        <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>-->
-                    <span class="logo-text">FlowMatch<span class="logo-ai">AI</span></span>
+            <nav class="nav">
+                <div class="logo">FlowMatchAI</div>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#tarifs">Tarifs</a></li>
+                    <li><a href="#fonctionnement">Fonctionnement</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-auth">
+                    <a href="connexion.html" class="btn btn-outline">Connexion</a>
+                    <a href="inscription.html" class="btn btn-primary">Inscription</a>
                 </div>
-                <nav class="nav" id="nav">
-                    <a href="#accueil" class="nav-link">Accueil</a>
-                    <a href="#services" class="nav-link">Services</a>
-                    <a href="#comment" class="nav-link">Comment ça marche</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </nav>
-                <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+            </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="accueil">
-        <div class="hero-background"></div>
+    <!-- HERO -->
+    <section id="accueil" class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    L'IA accessible pour <span class="highlight">votre entreprise</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Confiez vos missions IA à des étudiants talentueux et encadrés.
-                    Simple, abordable et conforme au RGPD.
-                </p>
-                <a href="#contact" class="btn btn-primary">
-                    Demander une mission
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Etudiants IA qualifiés</div>
-                    </div>
-                    <!--<div class="stat">
-                        <div class="stat-number">95%</div>
-                        <div class="stat-label">Satisfaction client</div>
-                    </div>-->
-                    <div class="stat">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Conforme RGPD</div>
-                    </div>
+            <h1>
+                Trouvez des <span class="highlight">experts IA</span> à prix accessible pour votre PME
+            </h1>
+            <p>
+                FlowMatchAI connecte les PME avec des étudiants et freelances IA talentueux. 
+                Automatisations, chatbots, conformité RGPD — 50 à 70% moins cher que les agences classiques.
+            </p>
+            <a href="#tarifs" class="btn btn-primary">Voir les tarifs</a>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">65%</div>
+                    <div class="stat-label">des PME veulent intégrer l'IA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15%</div>
+                    <div class="stat-label">des PME ont déjà de l'IA</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50%</div>
+                    <div class="stat-label">trouvent les agences trop chères</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">-70%</div>
+                    <div class="stat-label">vs tarifs des agences IA classiques</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pourquoi Nous Section -->
-    <section class="why-us section-fade">
+    <!-- SERVICES -->
+    <section id="services">
         <div class="container">
-            <h2 class="section-title">Pourquoi FlowMatchAI ?</h2>
-
-            <div class="why-grid">
-                <!--<div class="why-card">
-                    <div class="why-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="24" r="20" stroke="#2A6EF0" stroke-width="2"/>
-                            <path d="M18 24L22 28L30 18" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </div>
-                    <h3 class="why-title">Missions IA simples</h3>
-                    <p class="why-text">
-                        Des projets d'intelligence artificielle accessibles, sans complexité technique. 
-                        Nous nous concentrons sur des solutions concrètes et immédiatement utiles pour votre activité.
-                    </p>
-                </div>-->
-
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <path d="M24 28C28.4183 28 32 24.4183 32 20C32 15.5817 28.4183 12 24 12C19.5817 12 16 15.5817 16 20C16 24.4183 19.5817 28 24 28Z" stroke="#2A6EF0" stroke-width="2"/>
-                            <path d="M12 36C12 31.5817 17.3726 28 24 28C30.6274 28 36 31.5817 36 36" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </div>
-                    <h3 class="why-title">Étudiants certifiés</h3>
-                    <p class="why-text">
-                        Nos talents IA sont vérifiés et certifiés.
-                        Chaque profil est sélectionné pour garantir un niveau réel de compétence et une formation en cours ou validée.
-                    </p>
-                </div>
-
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <rect x="12" y="16" width="24" height="20" rx="2" stroke="#2A6EF0" stroke-width="2"/>
-                            <path d="M18 16V14C18 11.7909 19.7909 10 22 10H26C28.2091 10 30 11.7909 30 14V16" stroke="#2A6EF0" stroke-width="2"/>
-                            <circle cx="24" cy="26" r="3" stroke="#2A6EF0" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3 class="why-title">Respect du RGPD</h3>
-                    <p class="why-text">
-                        Conformité totale avec le règlement européen.
-                        Vos données sont traitées en toute sécurité et transparence, sans aucun compromis.
-                    </p>
-                </div>
-
-                <div class="why-card">
-                    <div class="why-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                            <path d="M14 24L20 30L34 14" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="24" cy="24" r="18" stroke="#2A6EF0" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3 class="why-title">Prix abordables</h3>
-                    <p class="why-text">
-                        Profitez de tarifs adaptés aux PME grâce à notre modèle collaboratif.
-                        L'innovation IA devient enfin accessible à toutes les entreprises.
-                    </p>
-                </div>
+            <div class="section-header">
+                <h2>Nos Services IA</h2>
+                <p>Des solutions concrètes adaptées aux PME</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services section-fade" id="services">
-        <div class="container">
-            <h2 class="section-title">Nos services IA</h2>
-            <p class="section-subtitle">Des solutions concrètes pour optimiser votre activité</p>
-
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                            <rect width="56" height="56" rx="12" fill="#EEF5FF"/>
-                            <path d="M20 28H36M20 22H36M20 34H28" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round"/>
-                            <circle cx="42" cy="34" r="6" fill="#2A6EF0"/>
-                            <path d="M40 34L42 36L45 32" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
                         </svg>
                     </div>
-                    <h3 class="service-title">Automatisations simples</h3>
-                    <p class="service-description">
-                        Libérez-vous des tâches répétitives. Nous automatisons vos emails,
-                        traitements Excel, saisies de données et workflows quotidiens.
-                    </p>
+                    <h3>Automatisations simples</h3>
+                    <p>Gagnez du temps en automatisant vos tâches répétitives : emails, Excel, workflows quotidiens.</p>
                     <ul class="service-list">
                         <li>Traitement automatique d'emails</li>
-                        <li>Automatisation Excel & Google Sheets</li>
+                        <li>Automatisation Excel & Sheets</li>
                         <li>Extraction de données PDF</li>
-                        <li>Workflows de validation</li>
+                        <li>Workflows Zapier/Make</li>
                     </ul>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                            <rect width="56" height="56" rx="12" fill="#EEF5FF"/>
-                            <rect x="16" y="14" width="24" height="18" rx="4" stroke="#2A6EF0" stroke-width="2" fill="none"/>
-                            <line x1="28" y1="10" x2="28" y2="14" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round"/>
-                            <circle cx="28" cy="9" r="2" fill="#2A6EF0"/>
-                            <circle cx="22" cy="22" r="2" fill="#2A6EF0"/>
-                            <circle cx="34" cy="22" r="2" fill="#2A6EF0"/>
-                            <line x1="22" y1="26" x2="34" y2="26" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round"/>
-                            <rect x="18" y="32" width="20" height="10" rx="3" stroke="#2A6EF0" stroke-width="2" fill="none"/>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                         </svg>
                     </div>
-                    <h3 class="service-title">Assistants IA internes</h3>
-                    <p class="service-description">
-                        Un chatbot intelligent pour votre équipe. Répondez instantanément
-                        aux questions internes sur vos processus, documentations et données.
-                    </p>
+                    <h3>Assistants IA internes</h3>
+                    <p>Créez un chatbot intelligent basé sur vos documents pour assister votre équipe 24/7.</p>
                     <ul class="service-list">
-                        <li>Chatbot basé sur vos documents</li>
-                        <li>Assistant FAQ interne</li>
-                        <li>Recherche intelligente de données</li>
-                        <li>Support client automatisé</li>
+                        <li>Chatbot basé sur vos docs</li>
+                        <li>Assistant FAQ automatisé</li>
+                        <li>Support client IA</li>
+                        <li>Recherche intelligente</li>
                     </ul>
                 </div>
-
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-                            <rect width="56" height="56" rx="12" fill="#EEF5FF"/>
-                            <path d="M18 36L24 28L30 32L38 20" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="38" cy="20" r="2" fill="#2A6EF0"/>
-                            <circle cx="30" cy="32" r="2" fill="#2A6EF0"/>
-                            <circle cx="24" cy="28" r="2" fill="#2A6EF0"/>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                         </svg>
                     </div>
-                    <h3 class="service-title">Analyse de données légère</h3>
-                    <p class="service-description">
-                        Transformez vos données en insights actionnables. Tableaux de bord,
-                        visualisations et rapports automatisés pour piloter votre activité.
-                    </p>
+                    <h3>Conformité RGPD & IA</h3>
+                    <p>Assurez la conformité RGPD et IA Act de vos projets avec nos experts certifiés.</p>
                     <ul class="service-list">
-                        <li>Tableaux de bord interactifs</li>
-                        <li>Rapports automatisés</li>
-                        <li>Visualisations de données</li>
-                        <li>Analyse de tendances</li>
+                        <li>Audit RGPD complet</li>
+                        <li>Conformité IA Act</li>
+                        <li>Documentation légale</li>
+                        <li>Sécurisation des données</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Comment ça marche Section -->
-    <section class="how-it-works section-fade" id="comment">
+    <!-- TARIFS -->
+    <section id="tarifs" class="pricing">
         <div class="container">
-            <h2 class="section-title">Comment ça marche ?</h2>
-            <p class="section-subtitle">Un processus simple et transparent en 4 étapes</p>
+            <div class="section-header">
+                <h2>Tarifs Transparents</h2>
+                <p>Des prix accessibles pour toutes les PME</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Automatisation Simple</h3>
+                    <div class="pricing-price">1 500€ <span>- 3 000€</span></div>
+                    <p class="pricing-desc">Idéal pour démarrer avec l'IA</p>
+                    <ul class="pricing-features">
+                        <li>✓ Automatisation emails</li>
+                        <li>✓ Workflows simples</li>
+                        <li>✓ Extraction PDF → Excel</li>
+                        <li>✓ Livraison : 1-3 semaines</li>
+                        <li>✓ Support 2 semaines</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline">Démarrer</a>
+                </div>
+                <div class="pricing-card featured">
+                    <span class="pricing-badge">Le plus populaire</span>
+                    <h3>Assistant IA</h3>
+                    <div class="pricing-price">2 500€ <span>- 5 000€</span></div>
+                    <p class="pricing-desc">Le meilleur rapport qualité/prix</p>
+                    <ul class="pricing-features">
+                        <li>✓ Chatbot personnalisé</li>
+                        <li>✓ Basé sur vos documents</li>
+                        <li>✓ Support client automatisé</li>
+                        <li>✓ Livraison : 2-6 semaines</li>
+                        <li>✓ Formation incluse</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Démarrer</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Projet Sur-Mesure</h3>
+                    <div class="pricing-price">4 000€ <span>- 10 000€</span></div>
+                    <p class="pricing-desc">Pour vos projets complexes</p>
+                    <ul class="pricing-features">
+                        <li>✓ Développement personnalisé</li>
+                        <li>✓ Intégration CRM/ERP</li>
+                        <li>✓ Analyse de données avancée</li>
+                        <li>✓ Livraison : 4-8 semaines</li>
+                        <li>✓ Support prioritaire</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline">Démarrer</a>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem; color: var(--text-gray);">
+                <p><strong>💰 Économisez 50 à 70%</strong> par rapport aux agences IA classiques (15K€ - 100K€)</p>
+                <p style="margin-top: 1rem;">💳 Paiement : 50% à la commande, 50% à la livraison</p>
+            </div>
+        </div>
+    </section>
 
-            <div class="steps">
-                <div class="step">
-                    <div class="step-number">01</div>
+    <!-- FONCTIONNEMENT -->
+    <section id="fonctionnement">
+        <div class="container">
+            <div class="section-header">
+                <h2>Comment ça marche ?</h2>
+                <p>Un processus simple en 4 étapes</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
                     <div class="step-content">
-                        <h3 class="step-title">Décrivez votre besoin</h3>
-                        <p class="step-description">
-                            Expliquez-nous simplement ce que vous souhaitez automatiser ou améliorer.
-                            Pas besoin d'être technique, nous traduisons vos besoins en solution IA.
-                        </p>
-                    </div>
-                    <div class="step-visual">
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <circle cx="40" cy="40" r="38" stroke="#2A6EF0" stroke-width="2" stroke-dasharray="4 4"/>
-                            <rect x="24" y="28" width="32" height="24" rx="2" stroke="#2A6EF0" stroke-width="2"/>
-                            <path d="M30 36H50M30 42H46" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
+                        <h3>Décrivez votre besoin</h3>
+                        <p>Expliquez-nous simplement ce que vous souhaitez automatiser. Pas besoin d'être technique, nous traduisons vos besoins en solution IA.</p>
                     </div>
                 </div>
-
-                <div class="step">
-                    <div class="step-number">02</div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
                     <div class="step-content">
-                        <h3 class="step-title">Sélection du talent</h3>
-                        <p class="step-description">
-                            Nous choisissons l'étudiant IA le plus adapté à votre projet parmi notre réseau.
-                            Chaque profil est vérifié et certifié.
-                        </p>
-                    </div>
-                    <div class="step-visual">
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <circle cx="40" cy="40" r="38" stroke="#2A6EF0" stroke-width="2" stroke-dasharray="4 4"/>
-                            <circle cx="40" cy="36" r="8" stroke="#2A6EF0" stroke-width="2"/>
-                            <path d="M28 54C28 48.4772 32.4772 44 38 44H42C47.5228 44 52 48.4772 52 54" stroke="#2A6EF0" stroke-width="2"/>
-                            <path d="M48 28L52 24L56 28" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <h3>Sélection du talent</h3>
+                        <p>Nous choisissons l'étudiant ou freelance IA le plus adapté à votre projet parmi notre réseau. Chaque profil est vérifié et encadré par nos experts.</p>
                     </div>
                 </div>
-
-                <div class="step">
-                    <div class="step-number">03</div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
                     <div class="step-content">
-                        <h3 class="step-title">Devis transparent</h3>
-                        <p class="step-description">
-                            Recevez un devis clair avec le détail de la mission, les livrables attendus,
-                            le calendrier et le prix. Aucune surprise, tout est négocié à l'avance.
-                        </p>
-                    </div>
-                    <div class="step-visual">
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <circle cx="40" cy="40" r="38" stroke="#2A6EF0" stroke-width="2" stroke-dasharray="4 4"/>
-                            <rect x="28" y="26" width="24" height="28" rx="2" stroke="#2A6EF0" stroke-width="2"/>
-                            <path d="M34 34H46M34 40H46M34 46H42" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
+                        <h3>Devis transparent</h3>
+                        <p>Vous recevez un devis clair sous 48h avec le détail de la mission, les livrables, le planning et le prix. Aucune surprise.</p>
                     </div>
                 </div>
-
-                <div class="step">
-                    <div class="step-number">04</div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
                     <div class="step-content">
-                        <h3 class="step-title">Réalisation conforme</h3>
-                        <p class="step-description">
-                            La mission est exécutée dans le respect total du RGPD et de vos exigences.
-                            Vous recevez vos livrables avec documentation et support.
-                        </p>
-                    </div>
-                    <div class="step-visual">
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <circle cx="40" cy="40" r="38" stroke="#2A6EF0" stroke-width="2" stroke-dasharray="4 4"/>
-                            <circle cx="40" cy="40" r="16" stroke="#2A6EF0" stroke-width="2"/>
-                            <path d="M32 40L36 44L48 32" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <h3>Réalisation & livraison</h3>
+                        <p>La mission est exécutée dans le respect du RGPD et de vos exigences. Vous recevez vos livrables avec documentation et support.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section avec Netlify Forms -->
-    <section class="contact section-fade" id="contact">
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
         <div class="container">
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h2 class="section-title">Démarrez votre projet IA</h2>
-                    <p class="contact-text">
-                        Prêt à automatiser vos tâches et gagner en efficacité ?
-                        Décrivez-nous votre besoin et nous vous recontactons sous 24h.
-                    </p>
-                    <div class="contact-features">
-                        <div class="contact-feature">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 13L9 17L19 7" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>Réponse sous 24h</span>
-                        </div>
-                        <div class="contact-feature">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 13L9 17L19 7" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>Devis gratuit</span>
-                        </div>
-                        <div class="contact-feature">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 13L9 17L19 7" stroke="#2A6EF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                            <span>Sans engagement</span>
+            <div class="section-header">
+                <h2>Ils nous font confiance</h2>
+                <p>Découvrez les retours de nos clients</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"FlowMatchAI nous a permis d'automatiser notre facturation en 3 semaines pour 2 200€. Une agence classique nous demandait 18 000€ !"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SL</div>
+                        <div>
+                            <div class="author-name">Sophie Laurent</div>
+                            <div class="author-position">CEO, TechStart (15 employés)</div>
                         </div>
                     </div>
                 </div>
-
-                <!-- FORMULAIRE NETLIFY FORMS -->
-                <form class="contact-form"
-                      name="contact-flowmatch"
-                      method="POST"
-                      data-netlify="true"
-                      data-netlify-honeypot="bot-field"
-                      data-netlify-spam-filter="false"
-                      action="/merci.html">
-
-                    <!-- Champs cachés pour Netlify -->
-                    <input type="hidden" name="form-name" value="contact-flowmatch">
-                    <p hidden>
-                        <label>Ne pas remplir si vous êtes humain : <input name="bot-field" /></label>
-                    </p>
-
-                    <div class="form-group">
-                        <label for="name">Nom complet</label>
-                        <input type="text" id="name" name="name" required placeholder="Jean Dupont">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Le chatbot développé par un étudiant a réduit nos délais de réponse de 60%. Qualité professionnelle à prix abordable."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MD</div>
+                        <div>
+                            <div class="author-name">Marc Dubois</div>
+                            <div class="author-position">CTO, ServicePlus (42 employés)</div>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="email">Email professionnel</label>
-                        <input type="email" id="email" name="email" required placeholder="jean.dupont@entreprise.fr">
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"L'audit RGPD était complexe mais le consultant nous a guidés pas à pas. Nous sommes désormais 100% conformes pour 3 500€."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">EA</div>
+                        <div>
+                            <div class="author-name">Émilie André</div>
+                            <div class="author-position">DPO, DataSecure (28 employés)</div>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="company">Entreprise</label>
-                        <input type="text" id="company" name="company" required placeholder="Nom de votre entreprise">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="need">Décrivez votre besoin</label>
-                        <textarea id="need" name="need" rows="4" required placeholder="Expliquez-nous ce que vous souhaitez automatiser ou améliorer..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary btn-full">
-                        Envoyer ma demande
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-
-                    <p class="form-privacy">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <rect x="3" y="5" width="10" height="8" rx="1" stroke="#6B7280" stroke-width="1.5"/>
-                            <path d="M5 5V4C5 2.89543 5.89543 2 7 2H9C10.1046 2 11 2.89543 11 4V5" stroke="#6B7280" stroke-width="1.5"/>
-                        </svg>
-                        Vos données sont traitées de manière confidentielle et conforme au RGPD
-                    </p>
-                </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Démarrez votre projet IA</h2>
+                <p>Décrivez-nous votre besoin, nous vous recontactons sous 24h</p>
+            </div>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nom complet</label>
+                    <input type="text" id="name" required placeholder="Jean Dupont">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email professionnel</label>
+                    <input type="email" id="email" required placeholder="jean.dupont@entreprise.fr">
+                </div>
+                <div class="form-group">
+                    <label for="company">Entreprise</label>
+                    <input type="text" id="company" required placeholder="Nom de votre entreprise">
+                </div>
+                <div class="form-group">
+                    <label for="message">Décrivez votre projet</label>
+                    <textarea id="message" rows="5" required placeholder="Expliquez-nous ce que vous souhaitez automatiser..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer ma demande</button>
+                <div id="formMessage" class="form-message"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
-                        <!--<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="40" height="40" rx="8" fill="#2A6EF0"/>
-                            <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>-->
-                        <span class="logo-text">FlowMatch<span class="logo-ai">AI</span></span>
-                    </div>
-                    <p class="footer-tagline">L'IA accessible pour toutes les entreprises</p>
+                <div>
+                    <h4>FlowMatchAI</h4>
+                    <p>L'IA accessible pour toutes les PME</p>
                 </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Navigation</h4>
-                        <a href="#accueil">Accueil</a>
-                        <a href="#services">Services</a>
-                        <a href="#comment">Comment ça marche</a>
-                        <a href="#contact">Contact</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Légal</h4>
-                        <a href="/mentions-legales.html">Mentions légales</a>
-                        <a href="/politique-confidentialite.html">Confidentialité</a>
-                        <a href="/rgpd.html">Conformité RGPD</a>
-                        <a href="/cgu.html">CGU</a>
-                    </div>
+                <div>
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#tarifs">Tarifs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Légal</h4>
+                    <ul>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html">Confidentialité</a></li>
+                        <li><a href="rgpd.html">RGPD</a></li>
+                        <li><a href="cgu.html">CGU</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Espace membre</h4>
+                    <ul>
+                        <li><a href="connexion.html">Connexion</a></li>
+                        <li><a href="inscription.html">Inscription</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 FlowMatchAI. Tous droits réservés. by e_404_</p>
+                <p>&copy; 2025 FlowMatchAI. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
-    <script src="script.js"></script>
+
+    <script>
+        // Scroll smooth
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const msg = document.getElementById('formMessage');
+            const btn = this.querySelector('button');
+            
+            btn.disabled = true;
+            btn.textContent = 'Envoi en cours...';
+            
+            setTimeout(() => {
+                msg.className = 'form-message success';
+                msg.textContent = '✓ Message envoyé ! Nous vous recontactons sous 24h.';
+                this.reset();
+                btn.disabled = false;
+                btn.textContent = 'Envoyer ma demande';
+            }, 1500);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
 </body>
 </html>
