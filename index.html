@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowMatchAI - Connectez-vous aux meilleurs experts IA</title>
+    <title>FlowMatchAI - L'IA accessible pour votre PME</title>
     <style>
         /* === RESET & VARIABLES === */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -80,6 +80,7 @@
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            display: inline-block;
         }
         
         .btn-primary {
@@ -100,13 +101,13 @@
         
         /* === HERO === */
         .hero {
-            padding: 8rem 0 4rem;
+            padding: 10rem 0 6rem;
             background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
             text-align: center;
         }
         
         .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             margin-bottom: 1.5rem;
             line-height: 1.2;
         }
@@ -114,52 +115,20 @@
         .highlight { color: var(--primary); }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-gray);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-        
-        /* === STATS === */
-        .stats {
-            background: white;
-            padding: 3rem 0;
-            margin-top: -2rem;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .stat-card {
-            text-align: center;
-            padding: 2rem;
-            background: var(--bg-light);
-            border-radius: 12px;
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            color: var(--text-gray);
-            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
         }
         
         /* === SECTIONS === */
         section {
-            padding: 5rem 0;
+            padding: 6rem 0;
         }
         
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 5rem;
         }
         
         .section-header h2 {
@@ -173,10 +142,12 @@
         }
         
         /* === SERVICES === */
+        .services { background: white; }
+        
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
         }
         
         .service-card {
@@ -218,6 +189,7 @@
         .service-card p {
             color: var(--text-gray);
             margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
         
         .service-list {
@@ -247,7 +219,7 @@
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
         
         .pricing-card {
@@ -306,6 +278,7 @@
         .pricing-features {
             list-style: none;
             margin: 2rem 0;
+            text-align: left;
         }
         
         .pricing-features li {
@@ -313,7 +286,19 @@
             color: var(--text-gray);
         }
         
+        .pricing-note {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-gray);
+        }
+        
+        .pricing-note p {
+            margin: 0.75rem 0;
+        }
+        
         /* === PROCESS === */
+        .process { background: white; }
+        
         .process-steps {
             display: grid;
             gap: 3rem;
@@ -347,53 +332,7 @@
         
         .step-content p {
             color: var(--text-gray);
-        }
-        
-        /* === TESTIMONIALS === */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        
-        .testimonial-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            color: var(--text-gray);
-            margin-bottom: 1.5rem;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-        }
-        
-        .author-name {
-            font-weight: 600;
-        }
-        
-        .author-position {
-            font-size: 0.9rem;
-            color: var(--text-gray);
+            line-height: 1.7;
         }
         
         /* === CONTACT === */
@@ -460,12 +399,12 @@
         .footer {
             background: var(--text-dark);
             color: white;
-            padding: 3rem 0 1rem;
+            padding: 3rem 0 1.5rem;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 3rem;
             margin-bottom: 2rem;
         }
@@ -502,9 +441,9 @@
         /* === RESPONSIVE === */
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hero { padding: 6rem 0 3rem; }
-            .stats-grid { grid-template-columns: 1fr; }
+            .hero { padding: 8rem 0 4rem; }
             .pricing-card.featured { transform: scale(1); }
+            .section-header h2 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -533,46 +472,21 @@
     <section id="accueil" class="hero">
         <div class="container">
             <h1>
-                Trouvez des <span class="highlight">experts IA</span> à prix accessible pour votre PME
+                L'<span class="highlight">IA accessible</span> pour votre PME
             </h1>
             <p>
-                FlowMatchAI connecte les PME avec des étudiants et freelances IA talentueux. 
-                Automatisations, chatbots, conformité RGPD — 50 à 70% moins cher que les agences classiques.
+                Des experts IA à tarifs abordables pour automatiser vos tâches et faire grandir votre entreprise
             </p>
             <a href="#tarifs" class="btn btn-primary">Voir les tarifs</a>
         </div>
     </section>
 
-    <!-- STATS -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">65%</div>
-                    <div class="stat-label">des PME veulent intégrer l'IA</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">15%</div>
-                    <div class="stat-label">des PME ont déjà de l'IA</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">50%</div>
-                    <div class="stat-label">trouvent les agences trop chères</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">-70%</div>
-                    <div class="stat-label">vs tarifs des agences IA classiques</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- SERVICES -->
-    <section id="services">
+    <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <h2>Nos Services IA</h2>
-                <p>Des solutions concrètes adaptées aux PME</p>
+                <h2>Nos Services</h2>
+                <p>Des solutions IA adaptées aux PME</p>
             </div>
             <div class="services-grid">
                 <div class="service-card">
@@ -581,13 +495,12 @@
                             <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
                         </svg>
                     </div>
-                    <h3>Automatisations simples</h3>
-                    <p>Gagnez du temps en automatisant vos tâches répétitives : emails, Excel, workflows quotidiens.</p>
+                    <h3>Automatisations</h3>
+                    <p>Automatisez vos tâches répétitives et gagnez du temps au quotidien</p>
                     <ul class="service-list">
-                        <li>Traitement automatique d'emails</li>
-                        <li>Automatisation Excel & Sheets</li>
-                        <li>Extraction de données PDF</li>
+                        <li>Emails automatiques</li>
                         <li>Workflows Zapier/Make</li>
+                        <li>Extraction de données</li>
                     </ul>
                 </div>
                 <div class="service-card">
@@ -596,12 +509,11 @@
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                         </svg>
                     </div>
-                    <h3>Assistants IA internes</h3>
-                    <p>Créez un chatbot intelligent basé sur vos documents pour assister votre équipe 24/7.</p>
+                    <h3>Assistants IA</h3>
+                    <p>Créez un chatbot intelligent pour assister votre équipe 24/7</p>
                     <ul class="service-list">
-                        <li>Chatbot basé sur vos docs</li>
-                        <li>Assistant FAQ automatisé</li>
-                        <li>Support client IA</li>
+                        <li>Chatbot personnalisé</li>
+                        <li>Support client automatisé</li>
                         <li>Recherche intelligente</li>
                     </ul>
                 </div>
@@ -611,13 +523,12 @@
                             <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                         </svg>
                     </div>
-                    <h3>Conformité RGPD & IA</h3>
-                    <p>Assurez la conformité RGPD et IA Act de vos projets avec nos experts certifiés.</p>
+                    <h3>Conformité RGPD</h3>
+                    <p>Assurez la conformité légale de vos projets IA</p>
                     <ul class="service-list">
                         <li>Audit RGPD complet</li>
                         <li>Conformité IA Act</li>
                         <li>Documentation légale</li>
-                        <li>Sécurisation des données</li>
                     </ul>
                 </div>
             </div>
@@ -633,15 +544,14 @@
             </div>
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <h3>Automatisation Simple</h3>
+                    <h3>Automatisation</h3>
                     <div class="pricing-price">1 500€ <span>- 3 000€</span></div>
-                    <p class="pricing-desc">Idéal pour démarrer avec l'IA</p>
+                    <p class="pricing-desc">Idéal pour démarrer</p>
                     <ul class="pricing-features">
-                        <li>✓ Automatisation emails</li>
                         <li>✓ Workflows simples</li>
-                        <li>✓ Extraction PDF → Excel</li>
+                        <li>✓ Extraction de données</li>
                         <li>✓ Livraison : 1-3 semaines</li>
-                        <li>✓ Support 2 semaines</li>
+                        <li>✓ Support inclus</li>
                     </ul>
                     <a href="#contact" class="btn btn-outline">Démarrer</a>
                 </div>
@@ -649,113 +559,69 @@
                     <span class="pricing-badge">Le plus populaire</span>
                     <h3>Assistant IA</h3>
                     <div class="pricing-price">2 500€ <span>- 5 000€</span></div>
-                    <p class="pricing-desc">Le meilleur rapport qualité/prix</p>
+                    <p class="pricing-desc">Meilleur rapport qualité/prix</p>
                     <ul class="pricing-features">
                         <li>✓ Chatbot personnalisé</li>
-                        <li>✓ Basé sur vos documents</li>
-                        <li>✓ Support client automatisé</li>
+                        <li>✓ Support client IA</li>
                         <li>✓ Livraison : 2-6 semaines</li>
                         <li>✓ Formation incluse</li>
                     </ul>
                     <a href="#contact" class="btn btn-primary">Démarrer</a>
                 </div>
                 <div class="pricing-card">
-                    <h3>Projet Sur-Mesure</h3>
+                    <h3>Sur-Mesure</h3>
                     <div class="pricing-price">4 000€ <span>- 10 000€</span></div>
-                    <p class="pricing-desc">Pour vos projets complexes</p>
+                    <p class="pricing-desc">Pour projets complexes</p>
                     <ul class="pricing-features">
                         <li>✓ Développement personnalisé</li>
                         <li>✓ Intégration CRM/ERP</li>
-                        <li>✓ Analyse de données avancée</li>
                         <li>✓ Livraison : 4-8 semaines</li>
                         <li>✓ Support prioritaire</li>
                     </ul>
                     <a href="#contact" class="btn btn-outline">Démarrer</a>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 3rem; color: var(--text-gray);">
-                <p><strong>💰 Économisez 50 à 70%</strong> par rapport aux agences IA classiques (15K€ - 100K€)</p>
-                <p style="margin-top: 1rem;">💳 Paiement : 50% à la commande, 50% à la livraison</p>
+            <div class="pricing-note">
+                <p><strong>Économisez 50 à 70%</strong> vs agences classiques</p>
+                <p>Paiement : 50% à la commande, 50% à la livraison</p>
             </div>
         </div>
     </section>
 
     <!-- FONCTIONNEMENT -->
-    <section id="fonctionnement">
+    <section id="fonctionnement" class="process">
         <div class="container">
             <div class="section-header">
                 <h2>Comment ça marche ?</h2>
-                <p>Un processus simple en 4 étapes</p>
+                <p>Simple et transparent</p>
             </div>
             <div class="process-steps">
                 <div class="process-step">
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <h3>Décrivez votre besoin</h3>
-                        <p>Expliquez-nous simplement ce que vous souhaitez automatiser. Pas besoin d'être technique, nous traduisons vos besoins en solution IA.</p>
+                        <p>Expliquez-nous simplement ce que vous souhaitez automatiser</p>
                     </div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">2</div>
                     <div class="step-content">
                         <h3>Sélection du talent</h3>
-                        <p>Nous choisissons l'étudiant ou freelance IA le plus adapté à votre projet parmi notre réseau. Chaque profil est vérifié et encadré par nos experts.</p>
+                        <p>Nous choisissons l'expert IA le plus adapté à votre projet</p>
                     </div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">3</div>
                     <div class="step-content">
                         <h3>Devis transparent</h3>
-                        <p>Vous recevez un devis clair sous 48h avec le détail de la mission, les livrables, le planning et le prix. Aucune surprise.</p>
+                        <p>Vous recevez un devis clair sous 48h. Aucune surprise.</p>
                     </div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">4</div>
                     <div class="step-content">
-                        <h3>Réalisation & livraison</h3>
-                        <p>La mission est exécutée dans le respect du RGPD et de vos exigences. Vous recevez vos livrables avec documentation et support.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="testimonials">
-        <div class="container">
-            <div class="section-header">
-                <h2>Ils nous font confiance</h2>
-                <p>Découvrez les retours de nos clients</p>
-            </div>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"FlowMatchAI nous a permis d'automatiser notre facturation en 3 semaines pour 2 200€. Une agence classique nous demandait 18 000€ !"</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SL</div>
-                        <div>
-                            <div class="author-name">Sophie Laurent</div>
-                            <div class="author-position">CEO, TechStart (15 employés)</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"Le chatbot développé par un étudiant a réduit nos délais de réponse de 60%. Qualité professionnelle à prix abordable."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">MD</div>
-                        <div>
-                            <div class="author-name">Marc Dubois</div>
-                            <div class="author-position">CTO, ServicePlus (42 employés)</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">"L'audit RGPD était complexe mais le consultant nous a guidés pas à pas. Nous sommes désormais 100% conformes pour 3 500€."</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">EA</div>
-                        <div>
-                            <div class="author-name">Émilie André</div>
-                            <div class="author-position">DPO, DataSecure (28 employés)</div>
-                        </div>
+                        <h3>Réalisation</h3>
+                        <p>La mission est exécutée avec documentation et support</p>
                     </div>
                 </div>
             </div>
@@ -766,8 +632,8 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2>Démarrez votre projet IA</h2>
-                <p>Décrivez-nous votre besoin, nous vous recontactons sous 24h</p>
+                <h2>Démarrez votre projet</h2>
+                <p>Nous vous recontactons sous 24h</p>
             </div>
             <form class="contact-form" id="contactForm">
                 <div class="form-group">
@@ -784,7 +650,7 @@
                 </div>
                 <div class="form-group">
                     <label for="message">Décrivez votre projet</label>
-                    <textarea id="message" rows="5" required placeholder="Expliquez-nous ce que vous souhaitez automatiser..."></textarea>
+                    <textarea id="message" rows="5" required placeholder="Expliquez-nous votre besoin..."></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer ma demande</button>
                 <div id="formMessage" class="form-message"></div>
